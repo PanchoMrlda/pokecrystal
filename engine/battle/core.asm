@@ -3117,7 +3117,6 @@ ForceEnemySwitch:
 	ret
 
 EnemySwitch:
-	call CheckWhetherToAskSwitch
 	jr nc, EnemySwitch_SetMode
 	; Shift Mode
 	call ResetEnemyBattleVars
