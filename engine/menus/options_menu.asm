@@ -226,6 +226,7 @@ Options_BattleScene:
 
 Options_BattleStyle:
 	ld hl, wOptions
+  jr .ToggleSet
 	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
