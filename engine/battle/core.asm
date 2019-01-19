@@ -7009,6 +7009,7 @@ GiveExperiencePoints:
 .loop1
 	inc hl
 	ld a, [de]
+  rr [hl]
 	add [hl]
 	ld [de], a
 	jr nc, .okay1
