@@ -3884,7 +3884,6 @@ InitBattleMon:
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
 	call CopyBytes
 	call ApplyStatusEffectOnPlayerStats
-	call BadgeStatBoosts
 	ret
 
 BattleCheckPlayerShininess:
@@ -3892,6 +3891,28 @@ BattleCheckPlayerShininess:
 	jr BattleCheckShininess
 
 BattleCheckEnemyShininess:
+  ; boost stats if enemy mon is trainer and level over 10
+  ld a, [wBattleMode]
+  cp a, TRAINER_BATTLE
+  jr nz, .ok
+  ld a, [wEnemyMonLevel]
+  cp a, 11
+  jr c, .ok
+  ld hl, wEnemyMonHP
+  call BoostStat
+  ld hl, wEnemyMonMaxHP
+  call BoostStat
+  ld hl, wEnemyMonAttack
+  call BoostStat
+  ld hl, wEnemyMonDefense
+  call BoostStat
+  ld hl, wEnemyMonSpeed
+  call BoostStat
+  ld hl, wEnemyMonSpclAtk
+  call BoostStat
+  ld hl, wEnemyMonSpclDef
+  call BoostStat
+.ok
 	call GetEnemyMonDVs
 
 BattleCheckShininess:
@@ -6749,64 +6770,6 @@ ApplyStatLevelMultiplier:
 
 INCLUDE "data/battle/stat_multipliers_2.asm"
 
-BadgeStatBoosts:
-; Raise the stats of the battle mon in wBattleMon
-; depending on which badges have been obtained.
-
-; Every other badge boosts a stat, starting from the first.
-
-; 	ZephyrBadge:  Attack
-; 	PlainBadge:   Speed
-; 	MineralBadge: Defense
-; 	GlacierBadge: Special Attack
-; 	RisingBadge:  Special Defense
-
-; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
-
-	ld a, [wLinkMode]
-	and a
-	ret nz
-
-	ld a, [wInBattleTowerBattle]
-	and a
-	ret nz
-
-	ld a, [wJohtoBadges]
-
-; Swap badges 3 (PlainBadge) and 5 (MineralBadge).
-	ld d, a
-	and (1 << PLAINBADGE)
-	add a
-	add a
-	ld b, a
-	ld a, d
-	and (1 << MINERALBADGE)
-	rrca
-	rrca
-	ld c, a
-	ld a, d
-	and ((1 << ZEPHYRBADGE) | (1 << HIVEBADGE) | (1 << FOGBADGE) | (1 << STORMBADGE) | (1 << GLACIERBADGE) | (1 << RISINGBADGE))
-	or b
-	or c
-	ld b, a
-
-	ld hl, wBattleMonAttack
-	ld c, 4
-.CheckBadge:
-	ld a, b
-	srl b
-	call c, BoostStat
-	inc hl
-	inc hl
-; Check every other badge.
-	srl b
-	dec c
-	jr nz, .CheckBadge
-; And the last one (RisingBadge) too.
-	srl a
-	call c, BoostStat
-	ret
-
 BoostStat:
 ; Raise stat at hl by 1/8.
 
@@ -7260,7 +7223,6 @@ GiveExperiencePoints:
 	ld [wApplyStatLevelMultipliersToEnemy], a
 	call ApplyStatLevelMultiplierOnAllStats
 	callfar ApplyStatusEffectOnPlayerStats
-	callfar BadgeStatBoosts
 	callfar UpdatePlayerHUD
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
