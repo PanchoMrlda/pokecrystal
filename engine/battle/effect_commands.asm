@@ -662,14 +662,6 @@ BattleCommand_CheckObedience:
 	ld a, MON_ID
 	call BattlePartyAttr
 
-	ld a, [wPlayerID]
-	cp [hl]
-	jr nz, .obeylevel
-	inc hl
-	ld a, [wPlayerID + 1]
-	cp [hl]
-	ret z
-
 .obeylevel
 	; The maximum obedience level is constrained by owned badges:
 	ld hl, wJohtoBadges
@@ -689,9 +681,19 @@ BattleCommand_CheckObedience:
 	ld a, 50
 	jr nz, .getlevel
 
+  ; plainbadge
+	bit PLAINBADGE, [hl]
+	ld a, 40
+	jr nz, .getlevel
+
 	; hivebadge
 	bit HIVEBADGE, [hl]
 	ld a, 30
+	jr nz, .getlevel
+
+  ; zephyrbadge
+	bit ZEPHYRBADGE, [hl]
+	ld a, 20
 	jr nz, .getlevel
 
 	; no badges
