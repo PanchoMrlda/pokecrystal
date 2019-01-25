@@ -8083,7 +8083,7 @@ InitEnemyTrainer:
 	cp RIVAL1
 	jr nz, .ok
 	xor a
-	ld [wOTPartyMon1Item], a
+	; ld [wOTPartyMon1Item], a
 .ok
 
 	ld de, vTiles2
