@@ -386,7 +386,6 @@ HandleBerserkGene:
 	ld a, b
 	call GetPartyLocation
 	xor a
-	ld [hl], a
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	push af
