@@ -917,7 +917,7 @@ MoonBallMultiplier:
 	push bc
 	ld a, BANK("Evolutions and Attacks")
 	call GetFarByte
-+	cp MOON_STONE
+	cp MOON_STONE
 	pop bc
 	ret nz
 
