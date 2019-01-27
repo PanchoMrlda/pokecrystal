@@ -412,6 +412,22 @@ HandleBerserkGene:
 	ret nz
 	xor a
 	ld [wNumHits], a
+  ; set confusion duration turns 
+  ld b, 2
+  call Random
+  cp 25 percent
+  jr c, .ok
+  inc b
+  cp 50 percent
+  jr c, .ok
+  inc b
+  cp 75 percent
+  jr c, .ok
+  inc b
+.ok
+  ld a, b
+  ld [wPlayerConfuseCount], a
+  ld [wEnemyConfuseCount], a
 	ld de, ANIM_CONFUSED
 	call Call_PlayBattleAnim_OnlyIfVisible
 	call SwitchTurnCore
