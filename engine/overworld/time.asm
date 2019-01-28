@@ -28,7 +28,7 @@ NextCallReceiveDelay:
 	jp RestartReceiveCallDelay
 
 .ReceiveCallDelays:
-	db 20, 10, 5, 3
+	db 10, 10, 5, 3
 
 CheckReceiveCallTimer:
 	call CheckReceiveCallDelay ; check timer

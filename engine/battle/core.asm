@@ -110,10 +110,67 @@ DoBattle:
 	call SpikesDamage
 
 .not_linked_2
+  call StartAutomaticBattleWeather
 	jp BattleTurn
 
 .tutorial_debug
 	jp BattleMenu
+
+StartAutomaticBattleWeather:
+	call GetAutomaticBattleWeather
+	and a
+	ret z
+; get current AutomaticWeatherEffects entry
+	dec a
+	ld hl, AutomaticWeatherEffects
+	ld bc, 5 ; size of one entry
+	call AddNTimes
+; [wBattleWeather] = weather
+	ld a, [hli]
+	ld [wBattleWeather], a
+; de = animation
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+; hl = text pointer
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+; start weather for 255 turns
+	ld a, 255
+	ld [wWeatherCount], a
+	push hl
+	call Call_PlayBattleAnim ; uses de
+	pop hl
+	call StdBattleTextBox ; uses hl
+	jp EmptyBattleTextBox
+
+GetAutomaticBattleWeather:
+	ld hl, AutomaticWeatherMaps
+	ld a, [wMapGroup]
+	ld b, a
+	ld a, [wMapNumber]
+	ld c, a
+.loop
+	ld a, [hli] ; group
+	and a
+	ret z ; end
+	cp b
+	jr nz, .wrong_group
+	ld a, [hli] ; map
+	cp c
+	jr nz, .wrong_map
+	ld a, [hl] ; weather
+	ret
+
+.wrong_group:
+	inc hl ; skip map
+.wrong_map
+	inc hl ; skip weather
+	jr .loop
+
+INCLUDE "data/battle/automatic_weather.asm"
 
 WildFled_EnemyFled_LinkBattleCanceled:
 	call Call_LoadTempTileMapToTileMap
@@ -386,7 +443,6 @@ HandleBerserkGene:
 	ld a, b
 	call GetPartyLocation
 	xor a
-	ld [hl], a
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	push af
@@ -412,6 +468,22 @@ HandleBerserkGene:
 	ret nz
 	xor a
 	ld [wNumHits], a
+  ; set confusion duration turns 
+  ld b, 2
+  call Random
+  cp 25 percent
+  jr c, .ok
+  inc b
+  cp 50 percent
+  jr c, .ok
+  inc b
+  cp 75 percent
+  jr c, .ok
+  inc b
+.ok
+  ld a, b
+  ld [wPlayerConfuseCount], a
+  ld [wEnemyConfuseCount], a
 	ld de, ANIM_CONFUSED
 	call Call_PlayBattleAnim_OnlyIfVisible
 	call SwitchTurnCore
@@ -6017,8 +6089,8 @@ LoadEnemyMon:
 ; Failing that, it's all up to chance
 ;  Effective chances:
 ;    75% None
-;    23% Item1
-;     2% Item2
+;    20% Item1
+;     5% Item2
 
 ; 25% chance of getting an item
 	call BattleRandom
@@ -6026,9 +6098,9 @@ LoadEnemyMon:
 	ld a, NO_ITEM
 	jr c, .UpdateItem
 
-; From there, an 8% chance for Item2
+; From there, an 20% chance for Item2
 	call BattleRandom
-	cp 8 percent ; 8% of 25% = 2% Item2
+	cp 20 percent ; 20% of 25% = 5% Item2
 	ld a, [wBaseItem1]
 	jr nc, .UpdateItem
 	ld a, [wBaseItem2]
@@ -8083,7 +8155,7 @@ InitEnemyTrainer:
 	cp RIVAL1
 	jr nz, .ok
 	xor a
-	ld [wOTPartyMon1Item], a
+	; ld [wOTPartyMon1Item], a
 .ok
 
 	ld de, vTiles2
