@@ -46,18 +46,66 @@ BattleBGMap:
 HalveMoney:
 	farcall StubbedTrainerRankings_WhiteOuts
 
-; Halve the player's money.
-	ld hl, wMoney
-	ld a, [hl]
-	srl a
-	ld [hli], a
-	ld a, [hl]
-	rra
-	ld [hli], a
-	ld a, [hl]
-	rra
-	ld [hl], a
-	ret
+  ; don't loose money if is not a trainer battle
+  ld a, [wBattleMode]
+	dec a
+  ret z
+
+  ld bc, 255
+  ld de, wMoney
+	ld hl, wBadges
+  ld a, [hl]
+  cp a, 8
+  jr z, .EightBadges
+	cp a, 7
+  jr z, .SevenBadges
+	cp a, 6
+  jr z, .SixBadges
+	cp a, 5
+  jr z, .FiveBadges
+	cp a, 4
+  jr z, .FourBadges
+	cp a, 3
+  jr z, .ThreeBadges
+	cp a, 2
+  jr z, .TwoBadges
+	cp a, 1
+  jr z, .OneBadge
+	cp a, 0
+  jr z, .NoBadges
+
+.EightBadges
+	farcall TakeMoney
+  farcall TakeMoney
+  farcall TakeMoney
+  farcall TakeMoney
+.SevenBadges
+	farcall TakeMoney
+  farcall TakeMoney
+  farcall TakeMoney
+.SixBadges
+	farcall TakeMoney
+  farcall TakeMoney
+  farcall TakeMoney
+.FiveBadges
+	farcall TakeMoney
+  farcall TakeMoney
+  farcall TakeMoney
+.FourBadges
+	farcall TakeMoney
+  farcall TakeMoney
+.ThreeBadges
+	farcall TakeMoney
+  farcall TakeMoney
+.TwoBadges
+	farcall TakeMoney
+  farcall TakeMoney
+.OneBadge
+	farcall TakeMoney
+  farcall TakeMoney
+.NoBadges
+	farcall TakeMoney
+  ret
 
 GetWhiteoutSpawn:
 	ld a, [wLastSpawnMapGroup]
