@@ -2617,6 +2617,23 @@ PlayerAttackDamage:
 	ld b, a
 	ld c, [hl]
 
+  ld a, [wBattleWeather]
+	cp WEATHER_SANDSTORM
+	jr nz, .no_sandstorm
+  ld hl, wEnemyMonType1
+	ld a, [hli]
+	cp ROCK
+	jr z, .sandstorm_sp_def
+
+	ld a, [hl]
+	cp ROCK
+	jr z, .sandstorm_sp_def
+
+.sandstorm_sp_def
+  sla c
+	rl b
+
+.no_sandstorm
 	ld a, [wEnemyScreens]
 	bit SCREENS_LIGHT_SCREEN, a
 	jr z, .specialcrit
@@ -2859,6 +2876,23 @@ EnemyAttackDamage:
 	ld b, a
 	ld c, [hl]
 
+  ld a, [wBattleWeather]
+	cp WEATHER_SANDSTORM
+	jr nz, .no_sandstorm
+  ld hl, wBattleMonType1
+	ld a, [hli]
+	cp ROCK
+	jr z, .sandstorm_sp_def
+
+	ld a, [hl]
+	cp ROCK
+	jr z, .sandstorm_sp_def
+
+.sandstorm_sp_def
+  sla c
+	rl b
+
+.no_sandstorm
 	ld a, [wPlayerScreens]
 	bit SCREENS_LIGHT_SCREEN, a
 	jr z, .specialcrit
