@@ -2048,21 +2048,48 @@ AI_Smart_Sandstorm:
 	pop hl
 	jr c, .asm_38fa5
 
-; Discourage this move if player's HP is below 50%.
-	call AICheckPlayerHalfHP
+; Greatly encourage this move if enemy is Rock type
+; and player is Water or Grass type
+  push hl
+  ld hl, wEnemyMonType1
+	ld a, [hli]
+	cp ROCK
+	jr z, .sandstorm_sp_def
+
+	ld a, [hl]
+	cp ROCK
+  pop hl
+	jr nz, .asm_38fa5
+  push hl
+
+.sandstorm_sp_def
+  ld a, [wBattleMonType1]
+  ld hl, .SandstormSpecialTypes
+	ld de, 1
+	call IsInArray
+	pop hl
 	jr nc, .asm_38fa6
 
-; 50% chance to encourage this move otherwise.
-	call AI_50_50
-	ret c
+  ld a, [wBattleMonType2]
+  push hl
+  ld hl, .SandstormSpecialTypes
+	ld de, 1
+	call IsInArray
+	pop hl
+	jr nc, .asm_38fa6
 
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	ret
+
+; Encourage this move otherwise
+.asm_38fa6
 	dec [hl]
 	ret
 
 .asm_38fa5
 	inc [hl]
-
-.asm_38fa6
 	inc [hl]
 	ret
 
@@ -2070,6 +2097,11 @@ AI_Smart_Sandstorm:
 	db ROCK
 	db GROUND
 	db STEEL
+	db -1 ; end
+
+.SandstormSpecialTypes:
+	db WATER
+	db GRASS
 	db -1 ; end
 
 AI_Smart_Endure:
