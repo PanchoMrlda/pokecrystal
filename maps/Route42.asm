@@ -14,13 +14,21 @@ Route42_MapScripts:
 	scene_script .DummyScene0 ; SCENE_ROUTE42_NOTHING
 	scene_script .DummyScene1 ; SCENE_ROUTE42_SUICUNE
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+  callback MAPCALLBACK_TILES, .CaveDoor
 
 .DummyScene0:
 	end
 
 .DummyScene1:
 	end
+
+.CaveDoor:
+	checkevent EVENT_BEAT_JASMINE
+	iftrue .KeepDoorOpen
+	changeblock 10, 5, $72 ; closed wall
+.KeepDoorOpen:
+	return
 
 Route42SuicuneScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
