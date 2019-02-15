@@ -16,8 +16,13 @@
 Route34_MapScripts:
 	db 0 ; scene scripts
 
-	db 1 ; callbacks
+	db 2 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .EggCheckCallback
+	callback MAPCALLBACK_OBJECTS, .OfficerAlwaysOnDuty
+
+.OfficerAlwaysOnDuty:
+  clearevent EVENT_BEAT_OFFICER_KEITH
+  return
 
 .EggCheckCallback:
 	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG
