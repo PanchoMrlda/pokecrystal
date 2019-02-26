@@ -24,7 +24,7 @@ Route42_MapScripts:
 	end
 
 .CaveDoor:
-	checkevent EVENT_BEAT_JASMINE
+	checkevent EVENT_BEAT_CHUCK
 	iftrue .KeepDoorOpen
 	changeblock 10, 5, $72 ; closed wall
 .KeepDoorOpen:
