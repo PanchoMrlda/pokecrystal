@@ -730,6 +730,9 @@ _CGB_TrainerCard:
 	ldh [hCGBPalUpdate], a
 	ret
 
+.BadgePalettes:
+INCLUDE "gfx/trainer_card/badges.pal"
+
 _CGB_MoveList:
 	ld de, wBGPals1
 	ld a, PREDEFPAL_GOLDENROD
@@ -980,6 +983,3 @@ _CGB_MysteryGift:
 
 .Palettes:
 INCLUDE "gfx/mystery_gift/mystery_gift.pal"
-
-.BadgePalettes:
-INCLUDE "gfx/trainer_card/badges.pal"
