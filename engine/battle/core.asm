@@ -3963,28 +3963,8 @@ BattleCheckPlayerShininess:
 	jr BattleCheckShininess
 
 BattleCheckEnemyShininess:
-  ; boost stats if enemy mon is trainer and level over 10
-  ld a, [wBattleMode]
-  cp a, TRAINER_BATTLE
-  jr nz, .ok
-  ld a, [wEnemyMonLevel]
-  cp a, 11
-  jr c, .ok
-  ld hl, wEnemyMonHP
-  call BoostStat
-  ld hl, wEnemyMonMaxHP
-  call BoostStat
-  ld hl, wEnemyMonAttack
-  call BoostStat
-  ld hl, wEnemyMonDefense
-  call BoostStat
-  ld hl, wEnemyMonSpeed
-  call BoostStat
-  ld hl, wEnemyMonSpclAtk
-  call BoostStat
-  ld hl, wEnemyMonSpclDef
-  call BoostStat
-.ok
+  ; boost stats as evs
+  call MonStatBoosts
 	call GetEnemyMonDVs
 
 BattleCheckShininess:
@@ -6844,18 +6824,75 @@ ApplyStatLevelMultiplier:
 
 INCLUDE "data/battle/stat_multipliers_2.asm"
 
-BoostStat:
-; Raise stat at hl by 1/8.
+MonStatBoosts:
+  ; ld a, [wBattleMode]
+  ; cp a, TRAINER_BATTLE
+  ; jr nz, .ok
+  ; ld a, [wEnemyMonLevel]
+  ; cp a, 11
+  ; jr c, .ok
+  ; ld hl, wEnemyMonHP
+  ; call BoostStat
+  ; ld hl, wEnemyMonMaxHP
+  ; call BoostStat
+  ; ld hl, wEnemyMonAttack
+  ; call BoostStat
+  ; ld hl, wEnemyMonDefense
+  ; call BoostStat
+  ; ld hl, wEnemyMonSpeed
+  ; call BoostStat
+  ; ld hl, wEnemyMonSpclAtk
+  ; call BoostStat
+  ; ld hl, wEnemyMonSpclDef
+  ; call BoostStat
+  ; 16 => 0
+  ; 32 => 0.0625
+  ; 48 => 0.125
+  ; 64 => 0.1875
+  ; 80 => 0.25
 
+  ld hl, wEnemyMonHP
+  ld c, 7
+.CheckStat
+  call BoostStat
+  inc hl
+  inc hl
+  dec c
+	jr nz, .CheckStat
+.ok
+  ret
+
+BoostStat:
+; Raise stat at hl
+
+  ld a, [wEnemyMonLevel]
+  ld b, 5
+  cp 16
+  jr c, .bellowLevel16
+  cp 32
+  jr c, .bellowLevel32
+  cp 48
+  jr c, .bellowLevel48
+  cp 64
+  jr c, .bellowLevel64
+  cp 80
+  jr c, .bellowLevel80
+  dec b
+.bellowLevel80
+  dec b
+.bellowLevel64
+  dec b
+.bellowLevel48
+  dec b
+.bellowLevel32
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
-	srl d
+.loop
+  srl d
 	rr e
-	srl d
-	rr e
-	srl d
-	rr e
+  dec b
+  jr nz, .loop
 	ld a, [hl]
 	add e
 	ld [hld], a
@@ -6873,6 +6910,7 @@ BoostStat:
 	ld [hli], a
 	ld a, LOW(MAX_STAT_VALUE)
 	ld [hld], a
+.bellowLevel16
 	ret
 
 _LoadBattleFontsHPBar:
