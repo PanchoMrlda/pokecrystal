@@ -21,8 +21,8 @@ IconPointers:
 	dw PidgeotIcon
 	dw RattataIcon
 	dw RaticateIcon
-	dw MarillIcon
-	dw AzumarillIcon
+	dw SpearowIcon
+	dw FearowIcon
 	dw EkansIcon
 	dw ArbokIcon
 	dw PikachuIcon
@@ -108,6 +108,7 @@ IconPointers:
 	dw MarowakIcon
 	dw HitmonleeIcon
 	dw HitmonchanIcon
+	dw LickitungIcon
 	dw KoffingIcon
 	dw WeezingIcon
 	dw RhyhornIcon
@@ -117,9 +118,8 @@ IconPointers:
 	dw KangaskhanIcon
 	dw HorseaIcon
 	dw SeadraIcon
-	dw TogepiIcon
-	dw TogeticIcon
-	dw TogekissIcon
+  dw GoldeenIcon
+  dw SeakingIcon
 	dw StaryuIcon
 	dw StarmieIcon
 	dw MrMimeIcon
@@ -173,33 +173,33 @@ IconPointers:
 	dw ChinchouIcon
 	dw LanturnIcon
 	dw PichuIcon
-	dw MunchlaxIcon
-	dw MagnezoneIcon
-	dw TangrowthIcon
+	dw CleffaIcon
+	dw IgglybuffIcon
+  dw TogepiIcon
+	dw TogeticIcon
 	dw NatuIcon
 	dw XatuIcon
 	dw MareepIcon
 	dw FlaaffyIcon
 	dw AmpharosIcon
 	dw BellossomIcon
-	dw RhyperiorIcon
+	dw MarillIcon
+	dw AzumarillIcon
 	dw SudowoodoIcon
 	dw PolitoedIcon
+	dw HoppipIcon
+	dw SkiploomIcon
+	dw JumpluffIcon
 	dw SunkernIcon
 	dw SunfloraIcon
 	dw YanmaIcon
-	dw YanmegaIcon
 	dw WooperIcon
 	dw QuagsireIcon
 	dw EspeonIcon
 	dw UmbreonIcon
-	dw LeafeonIcon
-	dw GlaceonIcon
 	dw MurkrowIcon
-	dw HonchkrowIcon
 	dw SlowkingIcon
 	dw MisdreavusIcon
-	dw MismagiusIcon
 	dw UnownIcon
 	dw WobbuffetIcon
 	dw GirafarigIcon
@@ -207,7 +207,6 @@ IconPointers:
 	dw ForretressIcon
 	dw DunsparceIcon
 	dw GligarIcon
-	dw GliscorIcon
 	dw SteelixIcon
 	dw SnubbullIcon
 	dw GranbullIcon
@@ -215,17 +214,16 @@ IconPointers:
 	dw ScizorIcon
 	dw HeracrossIcon
 	dw SneaselIcon
-	dw WeavileIcon
 	dw TeddiursaIcon
 	dw UrsaringIcon
 	dw SlugmaIcon
 	dw MagcargoIcon
 	dw SwinubIcon
 	dw PiloswineIcon
-	dw MamoswineIcon
 	dw CorsolaIcon
 	dw RemoraidIcon
 	dw OctilleryIcon
+  dw DelibirdIcon
 	dw MantineIcon
 	dw SkarmoryIcon
 	dw HoundourIcon
@@ -234,13 +232,13 @@ IconPointers:
 	dw PhanpyIcon
 	dw DonphanIcon
 	dw Porygon2Icon
+  dw StantlerIcon
 	dw SmeargleIcon
 	dw TyrogueIcon
 	dw HitmontopIcon
+	dw SmoochumIcon
 	dw ElekidIcon
-	dw ElectivireIcon
 	dw MagbyIcon
-	dw MagmortarIcon
 	dw MiltankIcon
 	dw BlisseyIcon
 	dw RaikouIcon
@@ -252,7 +250,4 @@ IconPointers:
 	dw LugiaIcon
 	dw HoOhIcon
 	dw CelebiIcon
-	dw SylveonIcon
-	dw PorygonZIcon
 	dw EggIcon
-	dw RattataBackIcon
