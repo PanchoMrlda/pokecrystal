@@ -2108,8 +2108,9 @@ wCurEnemyItem:: db
 ENDU ; d1f7
 
 wOtherTrainerType:: db
+wTrainerGroupBank:: db
 
-	ds 2
+	ds 1
 
 wLinkBattleRNs:: ds 10 ; d1fa
 
