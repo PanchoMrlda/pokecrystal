@@ -42,7 +42,7 @@ Route42SuicuneScript:
 	setmapscene ROUTE_36, SCENE_ROUTE36_SUICUNE
 	end
 
-Route42Geodude:
+Route42GeodudeScript:
 	faceplayer
 	opentext
 	writetext Route42GeodudeText
@@ -260,7 +260,7 @@ Route42SuicuneMovement:
 Route42HikerCaveClosedText:
 	text "I wanted to enter"
 	line "the cave but the"
-	cont "entrance collapsed."
+	cont "door collapsed."
 
 	para "Should my #MON"
 	line "use SELFDESTRUCT?"
@@ -398,5 +398,5 @@ Route42_MapEvents:
 	object_event  6,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42UltraBall, EVENT_ROUTE_42_ULTRA_BALL
 	object_event 33,  8, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42SuperPotion, EVENT_ROUTE_42_SUPER_POTION
 	object_event 26, 16, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42
-	object_event  9,  5, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route42HikerScript, -1
-	object_event 10,  5, SPRITE_GEODUDE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route42Geodude, -1
+	object_event  9,  7, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route42HikerScript, -1
+	object_event 10,  7, SPRITE_GEODUDE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route42GeodudeScript, -1
