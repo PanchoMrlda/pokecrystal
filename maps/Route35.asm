@@ -14,7 +14,13 @@
 Route35_MapScripts:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+  callback MAPCALLBACK_OBJECTS, .OfficerAlwaysOnDuty
+
+.OfficerAlwaysOnDuty:
+  clearevent EVENT_BEAT_OFFICER_DIRK
+  return
+
 
 TrainerBirdKeeperBryan:
 	trainer BIRD_KEEPER, BRYAN, EVENT_BEAT_BIRD_KEEPER_BRYAN, BirdKeeperBryanSeenText, BirdKeeperBryanBeatenText, 0, .Script
