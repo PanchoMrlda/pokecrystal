@@ -992,7 +992,7 @@ PokegearPhone_GetDPad:
 .scroll_page_down
 	ld hl, wPokegearPhoneScrollPosition
 	ld a, [hl]
-	cp 6
+	cp 10
 	ret nc
 	inc [hl]
 	jr .done_joypad_update_page
