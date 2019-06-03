@@ -2616,6 +2616,7 @@ wFastShipB1FSceneID::                             db ; d9bd
 wMountMoonSquareSceneID::                         db ; d9be
 wMobileTradeRoomSceneID::                         db ; d9bf
 wMobileBattleRoomSceneID::                        db ; d9c0
+wPewterMuseumOfScience1FSceneID::                 db ; d9c1
 
 	ds 49
 
