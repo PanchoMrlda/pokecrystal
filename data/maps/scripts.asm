@@ -421,6 +421,11 @@ INCLUDE "maps/PewterPokecenter1F.asm"
 INCLUDE "maps/PewterPokecenter2FBeta.asm"
 INCLUDE "maps/PewterSnoozeSpeechHouse.asm"
 
+SECTION "Pewter Museum Scripts", ROMX
+
+INCLUDE "maps/PewterMuseumOfScience1F.asm"
+INCLUDE "maps/PewterMuseumOfScience2F.asm"
+
 
 SECTION "Map Scripts 22", ROMX
 
