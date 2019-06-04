@@ -58,11 +58,20 @@ PewterMuseumReceptionistScript2:
 PewterMuseumSageScript:
 	jumptextfaceplayer PewterMuseumSageText
 
+PewterMuseumProudScientistScript:
+	jumptextfaceplayer PewterMuseumProudScientistText
+
+PewterMuseumIgnoredScientistScript:
+	jumptextfaceplayer PewterMuseumIgnoredScientistText
+
 PewterMuseumAerodactylFossil:
 	jumptext PewterMuseumAerodactylFossilText
 
 PewterMuseumKabutopsFossil:
 	jumptext PewterMuseumKabutopsFossilText
+
+PewterMuseumOldAmberScript:
+	jumptext PewterMuseumOldAmberText
 
 Movement_MuseumOfScienceTurnBack:
 	step DOWN
@@ -104,6 +113,35 @@ PewterMuseumSageText:
 	cont "fossil!"
 	done
 
+PewterMuseumProudScientistText:
+	text "We are proud of 2"
+	line "fossils of very"
+	cont "rare, prehistoric"
+	cont "#MON!"
+	done
+
+PewterMuseumIgnoredScientistText:
+	text "Ssh! I think that"
+	line "this chunk of"
+	cont "AMBER contains"
+	cont "#MON DNA!"
+
+	para "It would be great"
+	line "if #MON could"
+	cont "be resurrected"
+	cont "from it!"
+
+	para "But, my colleagues"
+	line "just ignore me!"
+
+	para "So I have a favor"
+	line "to ask!"
+
+	para "Take this to a"
+	line "#MON LAB and"
+	cont "get it examined!"
+	prompt
+
 PewterMuseumAerodactylFossilText:
 	text "AERODACTYL Fossil"
 	line "A primitive and"
@@ -114,6 +152,11 @@ PewterMuseumKabutopsFossilText:
 	text "KABUTOPS Fossil"
 	line "A primitive and"
   cont "rare #MON."
+	done
+
+PewterMuseumOldAmberText:
+	text "The AMBER is"
+	line "clear and gold!"
 	done
 
 PewterMuseumOfScience1F_MapEvents:
@@ -137,6 +180,9 @@ PewterMuseumOfScience1F_MapEvents:
 	bg_event  2,  3, BGEVENT_READ, PewterMuseumAerodactylFossil
 	bg_event  2,  6, BGEVENT_READ, PewterMuseumKabutopsFossil
 
-	db 2 ; object events
+	db 5 ; object events
 	object_event  1,  4, SPRITE_SAGE, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumSageScript, -1
 	object_event 12,  4, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event 16,  2, SPRITE_OLD_AMBER, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterMuseumOldAmberScript, -1
+	object_event 15,  2, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumIgnoredScientistScript, -1
+	object_event 17,  4, SPRITE_SCIENTIST, SPRITEMOVEDATA_WANDER, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumProudScientistScript, -1
