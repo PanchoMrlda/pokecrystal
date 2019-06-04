@@ -13,15 +13,21 @@ PewterMuseumScientistScript:
 	jumptextfaceplayer PewterMuseumScientistText
 
 PewterMuseumLassScript:
-	jumptextfaceplayer PewterMuseumLassText
+  faceplayer
+	opentext
+  writetext PewterMuseumLassText
+  waitbutton
+  closetext
+  turnobject LAST_TALKED, RIGHT
+  end
 
 PewterMuseumFisherScript:
 	jumptextfaceplayer PewterMuseumFisherText
 
-PewterMuseumMoonStoneScript:
+PewterMuseumMoonStone:
 	jumptextfaceplayer PewterMuseumMoonStoneText
 
-PewterMuseumSpaceShuttleScript:
+PewterMuseumSpaceShuttle:
 	jumptextfaceplayer PewterMuseumSpaceShuttleText
 
 PewterMuseumYoungsterText:
@@ -78,13 +84,13 @@ PewterMuseumOfScience2F_MapEvents:
 
 	db 0 ; coord events
 
-	db 1 ; bg events
+	db 2 ; bg events
 	bg_event  2,  5, BGEVENT_READ, PewterMuseumMoonStone
 	bg_event 11,  2, BGEVENT_READ, PewterMuseumSpaceShuttle
 
 	db 5 ; object events
-	object_event  1,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumYoungsterScript, -1
+	object_event  1,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumYoungsterScript, -1
 	object_event  0,  5, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterMuseumGrampsScript, -1
 	object_event  7,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumScientistScript, -1
-	object_event 11,  5, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumLassScript, -1
+	object_event 11,  5, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumLassScript, -1
 	object_event 12,  5, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PewterMuseumFisherScript, -1
