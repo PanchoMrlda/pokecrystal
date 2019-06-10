@@ -65,10 +65,28 @@ PewterMuseumIgnoredScientistScript:
 	jumptextfaceplayer PewterMuseumIgnoredScientistText
 
 PewterMuseumAerodactylFossil:
-	jumptext PewterMuseumAerodactylFossilText
+  opentext
+	writetext PewterMuseumAerodactylFossilText
+  waitbutton
+  closetext
+  refreshscreen
+	pokepic AERODACTYL
+	waitbutton
+	closepokepic
+  closetext
+  end
 
 PewterMuseumKabutopsFossil:
-	jumptext PewterMuseumKabutopsFossilText
+	opentext
+	writetext PewterMuseumKabutopsFossilText
+  waitbutton
+  closetext
+  refreshscreen
+	pokepic KABUTOPS
+	waitbutton
+	closepokepic
+  closetext
+  end
 
 PewterMuseumOldAmberScript:
 	jumptext PewterMuseumOldAmberText
