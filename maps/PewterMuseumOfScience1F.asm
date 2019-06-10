@@ -180,9 +180,6 @@ PewterMuseumOldAmberText:
 PewterMuseumOfScience1F_MapEvents:
 	db 0, 0 ; filler
 
-	; db 2 ; warp events
-	; warp_event  9, 23, SAFARI_ZONE_FUCHSIA_GATE_BETA, 1
-	; warp_event 10, 23, SAFARI_ZONE_FUCHSIA_GATE_BETA, 2
   db 5 ; warp events
 	warp_event 10,  7, PEWTER_CITY, 6
 	warp_event 11,  7, PEWTER_CITY, 6
