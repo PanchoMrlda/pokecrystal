@@ -107,3 +107,9 @@ EnteiSpriteGFX::               INCBIN "gfx/sprites/entei.2bpp"
 RaikouSpriteGFX::              INCBIN "gfx/sprites/raikou.2bpp"
 StandingYoungsterSpriteGFX::   INCBIN "gfx/sprites/standing_youngster.2bpp"
 OldAmberSpriteGFX::            INCBIN "gfx/sprites/old_amber.2bpp"
+
+SECTION "Sprites 3", ROMX
+
+BigGyaradosSpriteGFX::         INCBIN "gfx/sprites/big_gyarados.2bpp"
+PoliwrathSpriteGFX::           INCBIN "gfx/sprites/poliwrath.2bpp"
+WalkingPikachuSpriteGFX::      INCBIN "gfx/sprites/walking_pikachu.2bpp"
