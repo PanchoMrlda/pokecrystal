@@ -105,7 +105,7 @@
 	const SPRITE_OLD_AMBER ; 65
 	const SPRITE_BIG_GYARADOS ; 66
 	const SPRITE_POLIWRATH ; 67
-	const SPRITE_WALKING_PIKACU ; 68
+	const SPRITE_WALKING_PIKACHU ; 68
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 	const_def $80
