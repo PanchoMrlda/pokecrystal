@@ -190,6 +190,7 @@ IconPointers:
 	dw HoppipIcon
 	dw SkiploomIcon
 	dw JumpluffIcon
+	dw AipomIcon
 	dw SunkernIcon
 	dw SunfloraIcon
 	dw YanmaIcon
