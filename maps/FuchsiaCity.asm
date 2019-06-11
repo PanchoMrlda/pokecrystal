@@ -56,52 +56,93 @@ FuchsiaCityYoungsterVoltorb:
 FuchsiaCityMon:
 	jumptextfaceplayer FuchsiaCityText_19b2a
 
-FuchsiaCitySignText11:
-  jumptext FuchsiaCityText12
+FuchsiaCitySafariEntranceSign:
+  jumptext FuchsiaCitySafariEntranceText
 
-FuchsiaCitySignText12:
-  jumptext FuchsiaCityText12
+FuchsiaCityWardensHomeSign:
+  jumptext FuchsiaCityWardensHomeText
 
-FuchsiaCitySignText13:
-  jumptext FuchsiaCityText13
+FuchsiaCitySafariParadiseSign:
+  jumptext FuchsiaCitySafariParadiseText
 
-FuchsiaCityMartSignText:
-  jumpstd martsign
-
-FuchsiaCityPokeCenterSignText:
-  jumpstd pokecentersign
-
-FuchsiaCitySignText16:
-  jumptext FuchsiaCityText16
-
-FuchsiaCitySignText17:
-  jumptext FuchsiaCityText17
-
-FuchsiaCitySignText18:
-  jumptext FuchsiaCityText18
-
-FuchsiaCitySignText19:
-  jumptext FuchsiaCityText19
-
-FuchsiaCitySignText20:
-  jumptext FuchsiaCityText20
-
-FuchsiaCitySignText21:
-  jumptext FuchsiaCityText21
-
-FuchsiaCitySignText22:
-  jumptext FuchsiaCityText22
-
-FuchsiaCitySignText23:
-  jumptext FuchsiaCityText23
-
-FuchsiaCitySignText24:
+FuchsiaCityChanseySign:
   opentext
-	writetext FuchsiaCityText24
+	writetext FuchsiaCityChanseyText
+  waitbutton
+  closetext
+  refreshscreen
+	pokepic CHANSEY
+	pause 10
+	cry CHANSEY
+	waitbutton
+	closepokepic
+  closetext
+  end
+
+FuchsiaCityVoltorbSign:
+  opentext
+	writetext FuchsiaCityVoltorbText
+  waitbutton
+  closetext
+  refreshscreen
+	pokepic VOLTORB
+	pause 10
+	cry VOLTORB
+	waitbutton
+	closepokepic
+  closetext
+  end
+
+FuchsiaCityKangaskhanSign:
+  opentext
+	writetext FuchsiaCityKangaskhanText
+  waitbutton
+  closetext
+  refreshscreen
+	pokepic KANGASKHAN
+	pause 10
+	cry KANGASKHAN
+	waitbutton
+	closepokepic
+  closetext
+  end
+
+FuchsiaCitySlowkingSign:
+  opentext
+	writetext FuchsiaCitySlowkingText
+  waitbutton
+  closetext
+  refreshscreen
+	pokepic SLOWKING
+	pause 10
+	cry SLOWKING
+	waitbutton
+	closepokepic
+  closetext
+  end
+
+FuchsiaCityLaprasSign:
+  opentext
+	writetext FuchsiaCityLaprasText
+  waitbutton
+  closetext
+  refreshscreen
+	pokepic LAPRAS
+	pause 10
+	cry LAPRAS
+	waitbutton
+	closepokepic
+  closetext
+  end
+
+FuchsiaCityOmanyteSign:
+  opentext
+	writetext FuchsiaCityOmanyteText
   waitbutton
   closetext
   refreshscreen
 	pokepic OMANYTE
+	pause 10
 	cry OMANYTE
 	waitbutton
 	closepokepic
@@ -213,54 +254,36 @@ FuchsiaCityText5:
 	text "!"
 	done
 
-FuchsiaCityText12:
-	text "FUCHSIA CITY"
-	line "Behold! It's"
-	cont "Passion Pink!"
-	done
-
-FuchsiaCityText13:
+FuchsiaCitySafariEntranceText:
 	text "SAFARI GAME"
 	line "#MON-U-CATCH!"
 	done
 
-FuchsiaCityText16:
+FuchsiaCityWardensHomeText:
 	text "SAFARI ZONE"
 	line "WARDEN's HOME"
 	done
 
-FuchsiaCityText17:
+FuchsiaCitySafariParadiseText:
 	text "#MON PARADISE"
 	line "SAFARI ZONE"
 	done
 
-FuchsiaCityText18:
-	text "FUCHSIA CITY"
-	line "#MON GYM"
-	cont "LEADER: KOGA"
-
-	para "The Poisonous"
-	line "Ninja Master"
-	done
-
-FuchsiaCityText19:
-; FuchsiaCityChanseyText:
+FuchsiaCityChanseyText:
 	text "Name: CHANSEY"
 
 	para "Catching one is"
 	line "all up to chance."
 	prompt
 
-FuchsiaCityText20:
-; FuchsiaCityVoltorbText:
+FuchsiaCityVoltorbText:
 	text "Name: VOLTORB"
 
 	para "The very image of"
 	line "a # BALL."
 	prompt
 
-FuchsiaCityText21:
-; FuchsiaCityKangaskhanText:
+FuchsiaCityKangaskhanText:
 	text "Name: KANGASKHAN"
 
 	para "A maternal #MON"
@@ -269,24 +292,21 @@ FuchsiaCityText21:
 	cont "on its belly."
 	prompt
 
-FuchsiaCityText22:
-; FuchsiaCitySlowpokeText:
+FuchsiaCitySlowkingText:
 	text "Name: SLOWKING"
 
 	para "Friendly and very"
 	line "slow moving."
 	prompt
 
-FuchsiaCityText23:
-; FuchsiaCityLaprasText:
+FuchsiaCityLaprasText:
 	text "Name: LAPRAS"
 
 	para "A.K.A. the king"
 	line "of the seas."
 	prompt
 
-FuchsiaCityText24:
-; FuchsiaCityOmanyteText:
+FuchsiaCityOmanyteText:
 	text "Name: OMANYTE"
 
 	para "A #MON that"
@@ -316,7 +336,7 @@ FuchsiaCity_MapEvents:
 	warp_event 11, 27, BILLS_BROTHERS_HOUSE, 1
 	warp_event 19, 27, FUCHSIA_POKECENTER_1F, 1
 	warp_event 27, 27, SAFARI_ZONE_WARDENS_HOME, 1
-	warp_event 18,  3, SAFARI_ZONE_FUCHSIA_GATE_BETA, 3 ; inaccessible
+	warp_event 18,  3, SAFARI_ZONE_FUCHSIA_GATE_BETA, 3
 	warp_event 37, 22, ROUTE_15_FUCHSIA_GATE, 1
 	warp_event 37, 23, ROUTE_15_FUCHSIA_GATE, 2
 	warp_event  7, 35, ROUTE_19_FUCHSIA_GATE, 1
@@ -335,20 +355,20 @@ FuchsiaCity_MapEvents:
 	; bg_event  6, 13, BGEVENT_READ, FuchsiaCityMartSign
 
 	db 14 ; bg events
-	bg_event 15, 23, BGEVENT_READ, FuchsiaCitySignText11
-	bg_event 25, 15, BGEVENT_READ, FuchsiaCitySignText12
-	bg_event 17,  5, BGEVENT_READ, FuchsiaCitySignText13
-	bg_event  6, 13, BGEVENT_READ, FuchsiaCityMartSignText
-	bg_event 20, 27, BGEVENT_READ, FuchsiaCityPokeCenterSignText
-	bg_event 27, 29, BGEVENT_READ, FuchsiaCitySignText16
-	bg_event 21, 15, BGEVENT_READ, FuchsiaCitySignText17
-	bg_event  5, 29, BGEVENT_READ, FuchsiaCitySignText18
-	bg_event 33,  7, BGEVENT_READ, FuchsiaCitySignText19
-	bg_event 27,  7, BGEVENT_READ, FuchsiaCitySignText20
-	bg_event 13,  7, BGEVENT_READ, FuchsiaCitySignText21
-	bg_event 31, 13, BGEVENT_READ, FuchsiaCitySignText22
-	bg_event 13, 15, BGEVENT_READ, FuchsiaCitySignText23
-	bg_event  7,  7, BGEVENT_READ, FuchsiaCitySignText24
+	bg_event 15, 23, BGEVENT_READ, FuchsiaCitySign
+	bg_event 25, 15, BGEVENT_READ, FuchsiaCitySign
+	bg_event 17,  5, BGEVENT_READ, FuchsiaCitySafariEntranceSign
+	bg_event  6, 13, BGEVENT_READ, FuchsiaCityMartSign
+	bg_event 20, 27, BGEVENT_READ, FuchsiaCityPokecenterSign
+	bg_event 27, 29, BGEVENT_READ, FuchsiaCityWardensHomeSign
+	bg_event 21, 15, BGEVENT_READ, FuchsiaCitySafariParadiseSign
+	bg_event  5, 29, BGEVENT_READ, FuchsiaGymSign
+	bg_event 33,  7, BGEVENT_READ, FuchsiaCityChanseySign
+	bg_event 27,  7, BGEVENT_READ, FuchsiaCityVoltorbSign
+	bg_event 13,  7, BGEVENT_READ, FuchsiaCityKangaskhanSign
+	bg_event 31, 13, BGEVENT_READ, FuchsiaCitySlowkingSign
+	bg_event 13, 15, BGEVENT_READ, FuchsiaCityLaprasSign
+	bg_event  7,  7, BGEVENT_READ, FuchsiaCityOmanyteSign
 
 	db 11 ; object events
 	object_event 23, 18, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityYoungster, -1
