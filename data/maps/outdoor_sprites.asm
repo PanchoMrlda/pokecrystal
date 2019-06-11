@@ -117,6 +117,12 @@ FuchsiaGroupSprites:
 	; 7 of max 9 walking sprites
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
+  db SPRITE_OMANYTE
+  db SPRITE_BIG_LAPRAS
+  db SPRITE_SLOWKING
+  db SPRITE_KANGASKHAN
+  db SPRITE_VOLTORB
+  db SPRITE_CHANSEY
 	db 0 ; end
 
 IndigoGroupSprites:
@@ -230,6 +236,7 @@ MahoganyGroupSprites:
 	db SPRITE_FRUIT_TREE
 	db SPRITE_POKE_BALL
 	db SPRITE_SUICUNE
+	db SPRITE_GEODUDE
 	db 0 ; end
 
 LakeOfRageGroupSprites:
@@ -282,6 +289,7 @@ DungeonsGroupSprites:
 	db SPRITE_GAMEBOY_KID
 	db SPRITE_GROWLITHE
 	db SPRITE_POKE_BALL
+	db SPRITE_PERSIAN
 	db 0 ; end
 
 FastShipGroupSprites:

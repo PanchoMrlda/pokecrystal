@@ -35,3 +35,8 @@ SpriteMons:
 	db GYARADOS
 	db LUGIA
 	db HO_OH
+	db PERSIAN
+	db OMANYTE
+	db KANGASKHAN
+	db SLOWKING
+  db CHANSEY
