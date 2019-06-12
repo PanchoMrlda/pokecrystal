@@ -150,6 +150,9 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_KANGASKHAN ; a5
 	const SPRITE_SLOWKING ; a6
 	const SPRITE_CHANSEY ; a7
+	const SPRITE_DODRIO ; a8
+	const SPRITE_FEAROW ; a9
+	const SPRITE_MURKOW ; aa
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
 	const_def $e0
