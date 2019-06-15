@@ -213,6 +213,7 @@ IconPointers:
 	dw GranbullIcon
 	dw QwilfishIcon
 	dw ScizorIcon
+	dw ShuckleIcon
 	dw HeracrossIcon
 	dw SneaselIcon
 	dw TeddiursaIcon
