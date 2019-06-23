@@ -40,3 +40,7 @@ SpriteMons:
 	db KANGASKHAN
 	db SLOWKING
   db CHANSEY
+	db DODRIO
+	db FEAROW
+	db MURKROW
+  db MILTANK

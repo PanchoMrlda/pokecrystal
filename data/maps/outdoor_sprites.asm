@@ -123,6 +123,8 @@ FuchsiaGroupSprites:
   db SPRITE_KANGASKHAN
   db SPRITE_VOLTORB
   db SPRITE_CHANSEY
+  db SPRITE_BIG_GYARADOS
+  db SPRITE_BIG_ONIX
 	db 0 ; end
 
 IndigoGroupSprites:
@@ -215,7 +217,7 @@ CianwoodGroupSprites:
 	db SPRITE_SUPER_NERD
 	db SPRITE_SWIMMER_GUY
 	; 9 of max 9 walking sprites
-	db SPRITE_TAUROS
+	db SPRITE_MILTANK
 	db SPRITE_FRUIT_TREE
 	db SPRITE_ROCK
 	db SPRITE_YOUNGSTER
