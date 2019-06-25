@@ -165,17 +165,17 @@ JohtoWaterWildMons:
 
 	map_id ROUTE_40
 	db 6 percent ; encounter rate
-	db 25, TENTACOOL
 	db 20, TENTACOOL
-	db 25, TENTACRUEL
-	db 25, REMORAID
+	db 15, TENTACOOL
+	db 20, TENTACRUEL
+	db 20, REMORAID
 
 	map_id ROUTE_41
 	db 6 percent ; encounter rate
-	db 25, TENTACRUEL
-	db 25, REMORAID
-	db 25, MANTINE
-	db 30, OCTILLERY
+	db 20, TENTACRUEL
+	db 20, REMORAID
+	db 20, MANTINE
+	db 20, OCTILLERY
 
 	map_id ROUTE_42
 	db 4 percent ; encounter rate
@@ -189,7 +189,7 @@ JohtoWaterWildMons:
 	db 20, MAGIKARP
 	db 25, MAGIKARP
 	db 20, MAGIKARP
-	db 25, GYARADOS
+	db 20, GYARADOS
 
 	map_id ROUTE_44
 	db 2 percent ; encounter rate
@@ -229,9 +229,9 @@ JohtoWaterWildMons:
 	map_id CIANWOOD_CITY
 	db 6 percent ; encounter rate
 	db 20, TENTACOOL
-	db 25, TENTACRUEL
-	db 25, MANTINE
-	db 25, REMORAID
+	db 20, TENTACRUEL
+	db 20, MANTINE
+	db 20, REMORAID
 
 	map_id OLIVINE_CITY
 	db 6 percent ; encounter rate
