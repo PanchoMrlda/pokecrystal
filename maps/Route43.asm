@@ -224,7 +224,7 @@ TrainerPicnickerTiffany:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer PICNICKER, TIFFANY3
+	loadtrainer PICNICKER, TIFFANY1
 	startbattle
 	reloadmapafterbattle
 	loadvar wTiffanyFightCount, 1
@@ -232,7 +232,7 @@ TrainerPicnickerTiffany:
 	end
 
 .LoadFight1:
-	loadtrainer PICNICKER, TIFFANY1
+	loadtrainer PICNICKER, TIFFANY2
 	startbattle
 	reloadmapafterbattle
 	loadvar wTiffanyFightCount, 2
@@ -240,7 +240,7 @@ TrainerPicnickerTiffany:
 	end
 
 .LoadFight2:
-	loadtrainer PICNICKER, TIFFANY2
+	loadtrainer PICNICKER, TIFFANY3
 	startbattle
 	reloadmapafterbattle
 	loadvar wTiffanyFightCount, 3
