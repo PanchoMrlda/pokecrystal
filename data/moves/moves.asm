@@ -26,7 +26,7 @@ Moves: ; 41afb
 	move GUILLOTINE,   EFFECT_OHKO,                0, NORMAL,   PHYSICAL,  30,  5,   0
 	move RAZOR_WIND,   EFFECT_RAZOR_WIND,        100, FLYING,   SPECIAL,   75, 10,   0
 	move SWORDS_DANCE, EFFECT_ATTACK_UP_2,         0, NORMAL,   STATUS,   100, 30,   0
-	move CUT,          EFFECT_NORMAL_HIT,         50, NORMAL,   PHYSICAL,  95, 30,   0
+	move CUT,          EFFECT_NORMAL_HIT,         50, STEEL,    PHYSICAL,  95, 30,   0
 	move GUST,         EFFECT_GUST,               40, FLYING,   SPECIAL,  100, 35,   0
 	move WING_ATTACK,  EFFECT_NORMAL_HIT,         60, FLYING,   PHYSICAL, 100, 35,   0
 	move WHIRLWIND,    EFFECT_FORCE_SWITCH,        0, FLYING,   STATUS,   100, 20,   0
