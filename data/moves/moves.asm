@@ -26,7 +26,7 @@ Moves: ; 41afb
 	move GUILLOTINE,   EFFECT_OHKO,                0, NORMAL,   PHYSICAL,  30,  5,   0
 	move RAZOR_WIND,   EFFECT_RAZOR_WIND,        100, FLYING,   SPECIAL,   75, 10,   0
 	move SWORDS_DANCE, EFFECT_ATTACK_UP_2,         0, NORMAL,   STATUS,   100, 30,   0
-	move CUT,          EFFECT_NORMAL_HIT,         50, NORMAL,   PHYSICAL,  95, 30,   0
+	move CUT,          EFFECT_NORMAL_HIT,         50, STEEL,    PHYSICAL,  95, 30,   0
 	move GUST,         EFFECT_GUST,               40, FLYING,   SPECIAL,  100, 35,   0
 	move WING_ATTACK,  EFFECT_NORMAL_HIT,         60, FLYING,   PHYSICAL, 100, 35,   0
 	move WHIRLWIND,    EFFECT_FORCE_SWITCH,        0, FLYING,   STATUS,   100, 20,   0
@@ -163,7 +163,7 @@ Moves: ; 41afb
 	move PSYWAVE,      EFFECT_PSYWAVE,             1, PSYCHIC,  SPECIAL,   80, 15,   0
 	move SPLASH,       EFFECT_SPLASH,              0, NORMAL,   STATUS,   100, 40,   0
 	move ACID_ARMOR,   EFFECT_DEFENSE_UP_2,        0, POISON,   STATUS,   100, 40,   0
-	move CRABHAMMER,   EFFECT_NORMAL_HIT,         90, WATER,    PHYSICAL,  85, 10,   0
+	move CRABHAMMER,   EFFECT_NORMAL_HIT,        100, WATER,    PHYSICAL,  90, 10,   0
 	move EXPLOSION,    EFFECT_SELFDESTRUCT,      250, NORMAL,   PHYSICAL, 100,  5,   0
 	move FURY_SWIPES,  EFFECT_MULTI_HIT,          18, NORMAL,   PHYSICAL,  80, 15,   0
 	move BONEMERANG,   EFFECT_DOUBLE_HIT,         50, GROUND,   PHYSICAL,  90, 10,   0
