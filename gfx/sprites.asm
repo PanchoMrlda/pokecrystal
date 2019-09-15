@@ -111,3 +111,4 @@ SECTION "Sprites 3", ROMX
 BigGyaradosSpriteGFX::         INCBIN "gfx/sprites/big_gyarados.2bpp"
 PoliwrathSpriteGFX::           INCBIN "gfx/sprites/poliwrath.2bpp"
 WalkingPikachuSpriteGFX::      INCBIN "gfx/sprites/walking_pikachu.2bpp"
+RattataSpriteGFX::             INCBIN "gfx/sprites/rattata.2bpp"
