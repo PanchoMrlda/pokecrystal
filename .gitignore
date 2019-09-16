@@ -46,3 +46,4 @@ gfx/pokemon/*/frames.asm
 !gfx/pokemon/unown/bitmask.asm
 !gfx/pokemon/unown/frames.asm
 git-completion.bash
+*.DS_Store

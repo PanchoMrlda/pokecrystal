@@ -297,10 +297,10 @@ SpriteMovementData::
 	db 0 ; flags2
 	db SWIMMING ; palette flags
 
-; 25
-	db SPRITEMOVEFN_00 ; movement function
+; SPRITEMOVEDATA_BIG_MON
+	db SPRITEMOVEFN_STRENGTH ; movement function
 	db DOWN ; facing
-	db OBJECT_ACTION_STAND ; action
-	db 0 ; flags1
-	db 0 ; flags2
-	db 0 ; palette flags
+	db OBJECT_ACTION_BIG_MON ; action
+	db WONT_DELETE | FIXED_FACING | SLIDING | MOVE_ANYWHERE ; flags1
+	db LOW_PRIORITY ; flags2
+	db STRENGTH_BOULDER | BIG_OBJECT ; palette flags

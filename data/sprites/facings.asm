@@ -32,6 +32,7 @@ Facings:
 	dw FacingBoulderDust2
 	dw FacingGrass1
 	dw FacingGrass2
+	dw FacingBigMon
 .End
 	dw 0
 
@@ -197,7 +198,7 @@ FacingWeirdTree3:
 	db  8,  8, X_FLIP, $06
 	db  8,  0, X_FLIP, $07
 
-FacingBigDollAsymmetric: ; big doll other than snorlax or lapras
+FacingBigDollAsymmetric: ; big doll onix
 	db 14 ; #
 	db  0,  0, 0, $00
 	db  0,  8, 0, $01
@@ -213,6 +214,21 @@ FacingBigDollAsymmetric: ; big doll other than snorlax or lapras
 	db 16, 16, 0, $08
 	db 24, 24, X_FLIP, $04
 	db 24, 16, 0, $0b
+
+FacingBigMon: ; big doll other than snorlax or lapras or onix
+  db 12 ; #
+	db  4,  0, 0, $00
+	db  4,  8, 0, $01
+	db  4, 16, 0, $02
+	db  4, 24, 0, $03
+	db 12,  0, 0, $04
+	db 12,  8, 0, $05
+	db 12, 16, 0, $06
+	db 12, 24, 0, $07  
+  db 20,  0, 0, $08
+	db 20,  8, 0, $09
+	db 20, 16, 0, $0a
+	db 20, 24, 0, $0b
 
 FacingBoulderDust1: ; boulder dust 1
 	db 4 ; #

@@ -110,3 +110,4 @@ OverworldSprites:
 	overworld_sprite BigGyaradosSpriteGFX, 12, STANDING_SPRITE, PAL_OW_BLUE
 	overworld_sprite PoliwrathSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite WalkingPikachuSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
+	overworld_sprite RattataSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE

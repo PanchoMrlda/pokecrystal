@@ -17,6 +17,7 @@ ObjectActionPairPointers:
 	dw SetFacingBoulderDust,           SetFacingStanding
 	dw SetFacingGrassShake,            SetFacingStanding
 	dw SetFacingSkyfall,               SetFacingCurrent
+	dw SetFacingBigMon,                SetFacingBigMon
 
 SetFacingStanding:
 	ld hl, OBJECT_FACING_STEP
@@ -256,6 +257,12 @@ SetFacingBigDoll:
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], d
+	ret
+
+SetFacingBigMon:
+  ld hl, OBJECT_FACING_STEP
+	add hl, bc
+	ld [hl], FACING_BIG_MON
 	ret
 
 SetFacingBoulderDust:
