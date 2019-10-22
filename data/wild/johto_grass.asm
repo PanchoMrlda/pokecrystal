@@ -1423,7 +1423,7 @@ JohtoGrassWildMons:
 	db 15, VULPIX
 	db 15, PIDGEY
 	db 16, PIDGEOTTO
-	db 17, LEDIAN
+	db 17, PIDGEOTTO
 	db 17, SUDOWOODO
 	; nite
   db 15, SPINARAK
