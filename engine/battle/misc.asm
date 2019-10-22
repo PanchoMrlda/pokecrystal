@@ -145,6 +145,7 @@ DoWeatherModifiers:
 INCLUDE "data/battle/weather_modifiers.asm"
 
 DoBadgeTypeBoosts:
+  ret
 	ld a, [wLinkMode]
 	and a
 	ret nz
