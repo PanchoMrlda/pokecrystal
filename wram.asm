@@ -2620,12 +2620,13 @@ wMountMoonSquareSceneID::                         db ; d9be
 wMobileTradeRoomSceneID::                         db ; d9bf
 wMobileBattleRoomSceneID::                        db ; d9c0
 wPewterMuseumOfScience1FSceneID::                 db ; d9c1
+wRoute30SceneID::                                 db ; d9c2
 
 	ds 49
 
 ; fight counts
 wJackFightCount::    db ; d9f2
-wBeverlyFightCount:: db ; unused
+; wBeverlyFightCount:: db ; unused
 wHueyFightCount::    db
 wGavenFightCount::   db
 wBethFightCount::    db

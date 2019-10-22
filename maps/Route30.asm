@@ -10,11 +10,116 @@
 	const ROUTE30_FRUIT_TREE2
 	const ROUTE30_COOLTRAINER_F
 	const ROUTE30_POKE_BALL
+	const ROUTE30_RATTATA
 
 Route30_MapScripts:
-	db 0 ; scene scripts
+	db 1 ; scene scripts
+	scene_script .DummyScene ; SCENE_DEFAULT
 
 	db 0 ; callbacks
+
+.DummyScene:
+  follow PLAYER, ROUTE30_RATTATA
+	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	end
+
+Route30RattataScript:
+  stopfollow
+	faceplayer
+  refreshscreen
+	pokepic RATTATA
+	cry RATTATA
+	waitbutton
+	closepokepic
+  closetext
+  
+  opentext
+	writetext Route30RattataText
+	yesorno
+	iffalse .skip
+  follow PLAYER, ROUTE30_RATTATA
+	writetext Route30RattataFollowingText
+	waitbutton
+.skip:
+	closetext
+	end
+
+Route30_MonStopsFollowingScene1:
+	turnobject PLAYER, RIGHT
+	applymovement PLAYER, Movement_Route30TurnRight
+  stopfollow
+  refreshscreen
+	pokepic RATTATA
+	cry RATTATA
+	waitbutton
+	closepokepic
+  closetext
+	writetext Route30RattataFollowingText
+	playmusic MUSIC_MOM
+	; turnobject NEWBARKTOWN_TEACHER, LEFT
+	; opentext
+	; writetext Text_WaitPlayer
+	; waitbutton
+	; closetext
+	; turnobject PLAYER, RIGHT
+	; applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou1_NBT
+	; opentext
+	; writetext Text_WhatDoYouThinkYoureDoing
+	; waitbutton
+	; closetext
+	; follow NEWBARKTOWN_TEACHER, PLAYER
+	; applymovement NEWBARKTOWN_TEACHER, Movement_TeacherBringsYouBack1_NBT
+	; stopfollow
+	; opentext
+	; writetext Text_ItsDangerousToGoAlone
+	; waitbutton
+	; closetext
+	; special RestartMapMusic
+	; end
+  end
+
+Movement_MonStopsFollowing1:
+  step DOWN
+  step DOWN
+	turn_head UP
+	step_end
+
+Movement_Route30TurnRight:
+  step RIGHT
+  step_end
+
+Route30_MonStopsFollowingScene2:
+	turnobject PLAYER, RIGHT
+  stopfollow
+  refreshscreen
+	pokepic PIKACHU
+	cry PIKACHU
+	waitbutton
+	closepokepic
+  closetext
+	; playmusic MUSIC_MOM
+	; turnobject NEWBARKTOWN_TEACHER, LEFT
+	; opentext
+	; writetext Text_WaitPlayer
+	; waitbutton
+	; closetext
+	; turnobject PLAYER, RIGHT
+	; applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou2_NBT
+	; turnobject PLAYER, UP
+	; opentext
+	; writetext Text_WhatDoYouThinkYoureDoing
+	; waitbutton
+	; closetext
+	; follow NEWBARKTOWN_TEACHER, PLAYER
+	; applymovement NEWBARKTOWN_TEACHER, Movement_TeacherBringsYouBack2_NBT
+	; stopfollow
+	; opentext
+	; writetext Text_ItsDangerousToGoAlone
+	; waitbutton
+	; closetext
+	; special RestartMapMusic
+	; end
+  end
 
 YoungsterJoey_ImportantBattleScript:
 	waitsfx
@@ -404,6 +509,16 @@ YoungsterJoeyText_GiveHPUpAfterBattle:
 	line "tougher too."
 	done
 
+Route30RattataText:
+  text "Do you want to"
+  line "play with RATTATA?"
+  done
+
+Route30RattataFollowingText:
+  text "RATTATA is"
+  line "following you!"
+  done
+
 Route30_MapEvents:
 	db 0, 0 ; filler
 
@@ -411,7 +526,9 @@ Route30_MapEvents:
 	warp_event  7, 39, ROUTE_30_BERRY_HOUSE, 1
 	warp_event 17,  5, MR_POKEMONS_HOUSE, 1
 
-	db 0 ; coord events
+	db 2 ; coord events
+	coord_event  6, 42, SCENE_DEFAULT, Route30_MonStopsFollowingScene1
+	coord_event  6, 40, SCENE_DEFAULT, Route30_MonStopsFollowingScene2
 
 	db 5 ; bg events
 	bg_event  9, 43, BGEVENT_READ, Route30Sign
@@ -420,7 +537,7 @@ Route30_MapEvents:
 	bg_event  3, 21, BGEVENT_READ, Route30TrainerTips
 	bg_event 14,  9, BGEVENT_ITEM, Route30HiddenPotion
 
-	db 11 ; object events
+	db 12 ; object events
 	object_event  5, 26, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, YoungsterJoey_ImportantBattleScript, EVENT_ROUTE_30_BATTLE
 	object_event  2, 28, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterJoey, EVENT_ROUTE_30_YOUNGSTER_JOEY
 	object_event  5, 23, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerYoungsterMikey, -1
@@ -432,3 +549,4 @@ Route30_MapEvents:
 	object_event 11,  5, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route30FruitTree2, -1
 	object_event  2, 13, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route30CooltrainerFScript, -1
 	object_event  8, 35, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route30Antidote, EVENT_ROUTE_30_ANTIDOTE
+	object_event  6, 40, SPRITE_RATTATA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route30RattataScript, -1

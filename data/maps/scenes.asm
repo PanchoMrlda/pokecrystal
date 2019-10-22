@@ -85,4 +85,5 @@ MapScenes::
 	scene_var MOBILE_TRADE_ROOM,                           wMobileTradeRoomSceneID
 	scene_var MOBILE_BATTLE_ROOM,                          wMobileBattleRoomSceneID
 	scene_var PEWTER_MUSEUM_OF_SCIENCE_1F,                 wPewterMuseumOfScience1FSceneID
+	scene_var ROUTE_30,                                    wRoute30SceneID
 	db -1
