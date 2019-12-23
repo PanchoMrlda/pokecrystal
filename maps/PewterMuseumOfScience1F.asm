@@ -1,16 +1,28 @@
-	const_def 2 ; object constants
+	const_def 6 ; object constants
+	const PEWTERMUSEUM1F_SAGE
 	const PEWTERMUSEUM1F_RECEPTIONIST
+	const PEWTERMUSEUM1F_OLD_AMBER
+	const PEWTERMUSEUM1F_IGNORED_SCIENTIST
+	const PEWTERMUSEUM1F_PROUD_SCIENTIST
   const ALREADY_PAID_MUSEUM_TICKET
 
 PewterMuseumOfScience1F_MapScripts:
-	db 1 ; scene scripts
-	scene_script .DummyScene ; SCENE_DEFAULT
+  db 2 ; scene scripts
+  scene_script .DummyScene0 ; SCENE_PEWTERMUSEUMOFSCIENCE1F_NOTHING
+	scene_script .DummyScene1 ; SCENE_PEWTERMUSEUMOFSCIENCE1F_SCENE
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_NEWMAP, .MuseumTicket
 
-.DummyScene:
-  clearflag ALREADY_PAID_MUSEUM_TICKET
+.DummyScene0:
 	end
+
+.DummyScene1:
+	end
+
+.MuseumTicket:
+	clearflag ALREADY_PAID_MUSEUM_TICKET
+	return
 
 PewterMuseumReceptionistScript1:
   checkflag ALREADY_PAID_MUSEUM_TICKET
@@ -26,7 +38,7 @@ PewterMuseumReceptionistScript1:
 	ifequal HAVE_LESS, .NotEnoughMoney
   takemoney YOUR_MONEY, 50
   setflag ALREADY_PAID_MUSEUM_TICKET
-  writetext MuseumReceptionistTakeTimeText
+  writetext MuseumReceptionistThankYouText
   waitbutton
   closetext
 	end
@@ -57,6 +69,9 @@ PewterMuseumReceptionistScript2:
 
 PewterMuseumSageScript:
 	jumptextfaceplayer PewterMuseumSageText
+
+PewterMuseumReceptionistScript:
+	jumptextfaceplayer MuseumReceptionistTakeTimeText
 
 PewterMuseumProudScientistScript:
 	jumptextfaceplayer PewterMuseumProudScientistText
@@ -117,11 +132,16 @@ PewterMuseumNotEnoughMoneyText:
 	line "enough money."
 	prompt
 
-MuseumReceptionistTakeTimeText:
+MuseumReceptionistThankYouText:
   text "Right, ¥50!"
 	line "Thank you!"
 
 	para "Take plenty of"
+	line "time to look!"
+	done
+
+MuseumReceptionistTakeTimeText:
+	text "Take plenty of"
 	line "time to look!"
 	done
 
@@ -197,7 +217,7 @@ PewterMuseumOfScience1F_MapEvents:
 
 	db 5 ; object events
 	object_event  1,  4, SPRITE_SAGE, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumSageScript, -1
-	object_event 12,  4, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event 12,  4, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumReceptionistScript, -1
 	object_event 16,  2, SPRITE_OLD_AMBER, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterMuseumOldAmberScript, -1
 	object_event 15,  2, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumIgnoredScientistScript, -1
 	object_event 17,  4, SPRITE_SCIENTIST, SPRITEMOVEDATA_WANDER, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterMuseumProudScientistScript, -1
