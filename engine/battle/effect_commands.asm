@@ -2627,7 +2627,7 @@ PlayerAttackDamage:
 
 	ld a, [hl]
 	cp ROCK
-	jr z, .sandstorm_sp_def
+	jr nz, .no_sandstorm
 
 .sandstorm_sp_def
   sla c
