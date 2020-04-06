@@ -5997,6 +5997,7 @@ EndRechargeOpp:
 	ret
 
 INCLUDE "engine/battle/move_effects/rage.asm"
+INCLUDE "engine/battle/move_effects/growth.asm"
 
 BattleCommand_DoubleFlyingDamage:
 ; doubleflyingdamage

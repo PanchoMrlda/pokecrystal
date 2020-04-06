@@ -2075,3 +2075,10 @@ DefenseCurl:
 	statupmessage
 	statupfailtext
 	endmove
+
+Growth:
+	checkobedience
+	usedmovetext
+	doturn
+	growth
+	endmove
