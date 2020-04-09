@@ -10,116 +10,129 @@
 	const ROUTE30_FRUIT_TREE2
 	const ROUTE30_COOLTRAINER_F
 	const ROUTE30_POKE_BALL
-	const ROUTE30_RATTATA
+	const ROUTE30_MONSTER3
+	const ROUTE30_MONSTER3_FOLLOWING
 
 Route30_MapScripts:
-	db 1 ; scene scripts
-	scene_script .DummyScene ; SCENE_DEFAULT
+  db 2 ; scene scripts
+  scene_script .DummyScene0 ; SCENE_ROUTE_30_NOTHING
+	scene_script .DummyScene1 ; SCENE_ROUTE_30_SCENE
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_NEWMAP, .RattataIsOut
 
-.DummyScene:
-  follow PLAYER, ROUTE30_RATTATA
-	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
+.DummyScene0:
 	end
+
+.DummyScene1:
+	end
+
+.RattataIsOut:
+  appear ROUTE30_YOUNGSTER2
+  appear ROUTE30_MONSTER3
+  checkflag ENGINE_JOEY
+  iffalse .ok
+  disappear ROUTE30_MONSTER3
+.ok
+  clearflag ROUTE30_MONSTER3_FOLLOWING
+	return
 
 Route30RattataScript:
   stopfollow
-	faceplayer
+  faceplayer
+  checkcellnum PHONE_YOUNGSTER_JOEY
+	iffalse .RattataNotFriendYet
+  checkflag ROUTE30_MONSTER3_FOLLOWING
+  iftrue .keepPlaying
   refreshscreen
 	pokepic RATTATA
+  pause 10
 	cry RATTATA
 	waitbutton
 	closepokepic
   closetext
-  
   opentext
 	writetext Route30RattataText
+  jump .doneAsking
+.keepPlaying:
+  opentext
+	writetext Route30RattataKeepPlayingText
+.doneAsking:
 	yesorno
-	iffalse .skip
-  follow PLAYER, ROUTE30_RATTATA
+  iffalse .skip
+	; checkcode VAR_PARTYCOUNT
+	; ifequal PARTY_LENGTH, .partyfull
+	; iffalse .skip
+  ; special GiveRattata
+  setflag ROUTE30_MONSTER3_FOLLOWING
+  follow PLAYER, ROUTE30_MONSTER3
 	writetext Route30RattataFollowingText
+	waitbutton
+  closetext
+  end
+.partyfull:
+  opentext
+	writetext Route30PartyFullText
 	waitbutton
 .skip:
+	turnobject ROUTE30_MONSTER3, RIGHT
+  clearflag ROUTE30_MONSTER3_FOLLOWING
+  ; special ReturnRattata
 	closetext
 	end
-
-Route30_MonStopsFollowingScene1:
-	turnobject PLAYER, RIGHT
-	applymovement PLAYER, Movement_Route30TurnRight
-  stopfollow
-  refreshscreen
-	pokepic RATTATA
+.RattataNotFriendYet:
+  opentext
+	writetext Route30RattataFullOfEnergyText
+  pause 15
 	cry RATTATA
 	waitbutton
-	closepokepic
   closetext
-	writetext Route30RattataFollowingText
-	playmusic MUSIC_MOM
-	; turnobject NEWBARKTOWN_TEACHER, LEFT
-	; opentext
-	; writetext Text_WaitPlayer
-	; waitbutton
-	; closetext
-	; turnobject PLAYER, RIGHT
-	; applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou1_NBT
-	; opentext
-	; writetext Text_WhatDoYouThinkYoureDoing
-	; waitbutton
-	; closetext
-	; follow NEWBARKTOWN_TEACHER, PLAYER
-	; applymovement NEWBARKTOWN_TEACHER, Movement_TeacherBringsYouBack1_NBT
-	; stopfollow
-	; opentext
-	; writetext Text_ItsDangerousToGoAlone
-	; waitbutton
-	; closetext
-	; special RestartMapMusic
-	; end
+	turnobject ROUTE30_MONSTER3, RIGHT
   end
 
-Movement_MonStopsFollowing1:
-  step DOWN
-  step DOWN
-	turn_head UP
-	step_end
+Route30_MonStopsFollowing:
+  checkflag ROUTE30_MONSTER3_FOLLOWING
+  iffalse .notFollowing
+  clearflag ROUTE30_MONSTER3_FOLLOWING
+	stopfollow
+.notFollowing:
+	end
 
-Movement_Route30TurnRight:
-  step RIGHT
-  step_end
-
-Route30_MonStopsFollowingScene2:
-	turnobject PLAYER, RIGHT
-  stopfollow
-  refreshscreen
-	pokepic PIKACHU
-	cry PIKACHU
+Route30_MonStopsFollowingNorth:
+  checkflag ROUTE30_MONSTER3_FOLLOWING
+  iffalse .notFollowing
+	turnobject PLAYER, DOWN
+  opentext
+	writetext Route30RattataStopsFollowingText
+  pause 15
+  cry RATTATA
 	waitbutton
-	closepokepic
   closetext
-	; playmusic MUSIC_MOM
-	; turnobject NEWBARKTOWN_TEACHER, LEFT
-	; opentext
-	; writetext Text_WaitPlayer
-	; waitbutton
-	; closetext
-	; turnobject PLAYER, RIGHT
-	; applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou2_NBT
-	; turnobject PLAYER, UP
-	; opentext
-	; writetext Text_WhatDoYouThinkYoureDoing
-	; waitbutton
-	; closetext
-	; follow NEWBARKTOWN_TEACHER, PLAYER
-	; applymovement NEWBARKTOWN_TEACHER, Movement_TeacherBringsYouBack2_NBT
-	; stopfollow
-	; opentext
-	; writetext Text_ItsDangerousToGoAlone
-	; waitbutton
-	; closetext
-	; special RestartMapMusic
-	; end
-  end
+  clearflag ROUTE30_MONSTER3_FOLLOWING
+  stopfollow
+	applymovement ROUTE30_MONSTER3, Route30_JoeysRattataGoesBackNorthMovement
+  disappear ROUTE30_MONSTER3
+  appear ROUTE30_MONSTER3
+.notFollowing:
+	end
+
+Route30_MonStopsFollowingSouth:
+  checkflag ROUTE30_MONSTER3_FOLLOWING
+  iffalse .notFollowing
+	turnobject PLAYER, UP
+  opentext
+	writetext Route30RattataStopsFollowingText
+  pause 15
+  cry RATTATA
+	waitbutton
+  closetext
+  clearflag ROUTE30_MONSTER3_FOLLOWING
+	stopfollow
+	applymovement ROUTE30_MONSTER3, Route30_JoeysRattataGoesBackSouthMovement
+  disappear ROUTE30_MONSTER3
+  appear ROUTE30_MONSTER3
+.notFollowing:
+	end
 
 YoungsterJoey_ImportantBattleScript:
 	waitsfx
@@ -145,6 +158,10 @@ TrainerYoungsterJoey:
 	trainer YOUNGSTER, JOEY1, EVENT_BEAT_YOUNGSTER_JOEY, YoungsterJoey1SeenText, YoungsterJoey1BeatenText, 0, .Script
 
 .Script:
+  checkflag ROUTE30_MONSTER3_FOLLOWING
+  iftrue .RattataPlaying
+  disappear ROUTE30_MONSTER3
+.RattataPlaying
 	writecode VAR_CALLERID, PHONE_YOUNGSTER_JOEY
 	endifjustbattled
 	opentext
@@ -365,6 +382,20 @@ Route30_MikeysRattataAttacksMovement:
 	big_step UP
 	step_end
 
+Route30_JoeysRattataGoesBackSouthMovement:
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	slow_step UP
+	step_end
+
+Route30_JoeysRattataGoesBackNorthMovement:
+  step DOWN
+  step DOWN
+  step DOWN
+  step DOWN
+	step_end
+
 Text_UseTackle:
 	text "Go, RATTATA!"
 
@@ -519,6 +550,26 @@ Route30RattataFollowingText:
   line "following you!"
   done
 
+Route30RattataKeepPlayingText:
+  text "Do you want to"
+  line "keep playing?"
+  done
+
+Route30RattataStopsFollowingText:
+  text "RATTATA wants to"
+  line "stay with JOEY!"
+  done
+
+Route30RattataFullOfEnergyText:
+  text "This RATTATA is"
+  line "full of energy!"
+  done
+
+Route30PartyFullText:
+	text "There's no space"
+	line "for RATTATA…"
+	done
+
 Route30_MapEvents:
 	db 0, 0 ; filler
 
@@ -526,9 +577,14 @@ Route30_MapEvents:
 	warp_event  7, 39, ROUTE_30_BERRY_HOUSE, 1
 	warp_event 17,  5, MR_POKEMONS_HOUSE, 1
 
-	db 2 ; coord events
-	coord_event  6, 42, SCENE_DEFAULT, Route30_MonStopsFollowingScene1
-	coord_event  6, 40, SCENE_DEFAULT, Route30_MonStopsFollowingScene2
+	db 7 ; coord events
+	coord_event  4,  0, SCENE_DEFAULT, Route30_MonStopsFollowingNorth
+	coord_event  5,  0, SCENE_DEFAULT, Route30_MonStopsFollowingNorth
+	coord_event  6,  0, SCENE_DEFAULT, Route30_MonStopsFollowingNorth
+	coord_event  7,  0, SCENE_DEFAULT, Route30_MonStopsFollowingNorth
+	coord_event  6, 53, SCENE_DEFAULT, Route30_MonStopsFollowingSouth
+	coord_event  7, 53, SCENE_DEFAULT, Route30_MonStopsFollowingSouth
+	coord_event  7, 40, SCENE_DEFAULT, Route30_MonStopsFollowing
 
 	db 5 ; bg events
 	bg_event  9, 43, BGEVENT_READ, Route30Sign
@@ -549,4 +605,4 @@ Route30_MapEvents:
 	object_event 11,  5, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route30FruitTree2, -1
 	object_event  2, 13, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route30CooltrainerFScript, -1
 	object_event  8, 35, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route30Antidote, EVENT_ROUTE_30_ANTIDOTE
-	object_event  6, 40, SPRITE_RATTATA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route30RattataScript, -1
+	object_event  2, 29, SPRITE_RATTATA, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route30RattataScript, -1
