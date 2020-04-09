@@ -2307,8 +2307,8 @@ endc
 
 AriadosEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, POISON_STING
 	db 1, STRING_SHOT
+	db 1, POISON_STING
 	db 1, SCARY_FACE
 	db 1, CONSTRICT
 	db 6, SCARY_FACE
@@ -2532,8 +2532,8 @@ SudowoodoEvosAttacks:
 
 PolitoedEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, WATER_GUN
 	db 1, HYPNOSIS
+	db 1, WATER_GUN
 	db 1, DOUBLESLAP
 	db 1, PERISH_SONG
 	db 35, PERISH_SONG
